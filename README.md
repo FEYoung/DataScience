@@ -62,8 +62,7 @@ A selection of the files above were used in cleaning the dataset and they are:
 	X_test.txt - measured variables: V1 - V561
 	y_test.txt - activity variables: 1 - 6
 	
-	subject_train.txt - volunteer numbers: 1, 3, 5, 6, 7, 8, 11, 14, 15, 16, 17, 19, 21, 22, 23, 25, 
-					       26, 27, 28, 29, 30
+	subject_train.txt - volunteer numbers: 1, 3, 5, 6, 7, 8, 11, 14, 15, 16, 17, 19, 21, 22, 23, 25, 26, 27, 28, 29, 30
 	X_train.txt - measured variables: V1 - V561
 	y_train.txt - activity variables: 1 - 6
 		
@@ -73,11 +72,11 @@ In addition there are two other files:
 
 1.	codebook.md - contains three sections detailing the:
 
-		1.	design of the experiment;
+	1.	design of the experiment;
 
-		2.	choices made to process the dataset;
+	2.	choices made to process the dataset;
 
-		3.	information on the variables selected;
+	3.	information on the variables selected;
 
 2.	run_analysis.R - contains the R script to process the
 	dataset following the instructions given as:
