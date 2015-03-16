@@ -39,7 +39,7 @@ when unzipped "UCI HAR Dataset" includes the following files and directories:
 			total_acc_x_test.txt
 			total_acc_y_test.txt
 			total_acc_z_test.txt
-		SUBDIRECTORY - test
+		SUBDIRECTORY - train
 		subject_train.txt
 		X_train.txt
 		y_train.txt
