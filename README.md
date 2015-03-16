@@ -21,13 +21,13 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Datas
 
 when unzipped "UCI HAR Dataset" includes the following files and directories:
 
-	activity_labels.txt
-	features.txt
-	features_info.txt
-	readme.txt
+	activity_labels.txt - activity number and name 
+	features.txt - list of variables 1 - 561
+	features_info.txt - description of variables
+	readme.txt - information regarding the experiment
 		SUBDIRECTORY - test
-		subject_test.txt
-		X_test.txt
+		subject_test.txt  
+		X_test.txt 
 		y_test.txt
 			SUBDIRECTORY - Inertial Signals
 			body_acc_x_test.txt
@@ -58,12 +58,14 @@ when unzipped "UCI HAR Dataset" includes the following files and directories:
 
 A selection of the files above were used in cleaning the dataset and they are:
 
-	subject_test.txt
-	X_test.txt
-	y_test.txt
-	subject_train.txt
-	X_train.txt
-	y_train.txt
+	subject_test.txt - volunteer numbers: 2, 4, 9, 10, 12, 13, 18, 20, 24
+	X_test.txt - measured variables: V1 - V561
+	y_test.txt - activity variables: 1 - 6
+	
+	subject_train.txt - volunteer numbers: 1, 3, 5, 6, 7, 8, 11, 14, 15, 16, 17, 19, 21, 22, 23, 25, 
+					       26, 27, 28, 29, 30
+	X_train.txt - measured variables: V1 - V561
+	y_train.txt - activity variables: 1 - 6
 		
 ==============================================================	
 
