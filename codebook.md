@@ -13,18 +13,23 @@
 	
 	The raw data code for each task is defined here:
 
-	1 -	WALKING
+	1 -	walking
 	
-	2 -	WALKING_UPSTAIRS (20 stairs to climb)
+	2 -	walkingupstairs 
+		meaning 20 stairs were climbed
 	
-	3 -	WALKING_DOWNSTAIRS (20 stairs to descend)
+	3 -	walkingdownstairs
+		meaning 20 stairs were descended
 	
-	4 -	SITTING (sitting down in a chair)
+	4 -	sitting
+		meaning sitting down in a chair from a standing position
 	
-	5 -	STANDING (standing up from a sitting position)
+	5 -	standing
+		meaning standing up from a sitting position
 	
-	6 -	LAYING
-	 
+	6 -	laying
+		meaning laying down on a table from a standing position
+	=================================================================	 
 	 
 	Two sets of data were taken: training and test. A number of volunteers were selected for the two tasks:
 	
