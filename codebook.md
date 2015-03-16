@@ -11,7 +11,7 @@
 		descend 20 stairs, 
 		ascend 20 stairs.
 	
-	The code for each task is defined here:
+	The raw data code for each task is defined here:
 
 	1 -	WALKING
 	
@@ -24,6 +24,7 @@
 	5 -	STANDING (standing up from a sitting position)
 	
 	6 -	LAYING
+	
 	
 	Two sets of data were taken: training and test. A number of volunteers were selected for the two tasks.
 	
