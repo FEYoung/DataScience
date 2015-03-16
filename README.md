@@ -114,7 +114,7 @@ Reference sources:
     Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. 4th International Workshop of Ambient  
     Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012. Published in:
     Bravo J, Hervas R, Rodriguez M (Eds.), Lecture Notes in Computer Science - Ambient Assisted Living and Home Care,
-    Vol. 7657, pp. 216-223 Stringer-Verlag Berlin, Heidelberg
+    Vol. 7657, pp. 216-223 Stringer-Verlag Berlin, Heidelberg available online at www.springer.com/gb/book/9783642353949
 
 4.	A video of the experiment entitled "Activity recognition experiment using smartphone sensors" is available online
 	  from youtube.com at https://www.youtube.com/watch?v=XOEN9W05_4A
