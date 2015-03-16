@@ -24,9 +24,9 @@
 	5 -	STANDING (standing up from a sitting position)
 	
 	6 -	LAYING
-	
-	
-	Two sets of data were taken: training and test. A number of volunteers were selected for the two tasks.
+	 
+	 
+	Two sets of data were taken: training and test. A number of volunteers were selected for the two tasks:
 	
 	Test data:	30% or 9 of the 30 volunteers were selected for this task.
 	
