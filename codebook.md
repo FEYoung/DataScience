@@ -29,6 +29,7 @@
 	
 	6 -	laying
 		meaning laying down on a table from a standing position
+		
 	=================================================================	 
 	 
 	Two sets of data were taken: training and test. A number of volunteers were selected for the two tasks:
