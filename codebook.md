@@ -14,8 +14,8 @@
 	The code for each task is defined here:
 
 	1	WALKING
-	2 	WALKING_UPSTAIRS (2o stairs to climb)
-	3 	WALKING_DOWNSTAIRS (2o stairs to descend)
+	2 	WALKING_UPSTAIRS (20 stairs to climb)
+	3 	WALKING_DOWNSTAIRS (20 stairs to descend)
 	4 	SITTING (sitting down in a chair)
 	5 	STANDING (standing up from a sitting position)
 	6 	LAYING
