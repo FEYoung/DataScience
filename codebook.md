@@ -13,12 +13,12 @@
 	
 	The code for each task is defined here:
 
-	1.	WALKING
-	2. 	WALKING_UPSTAIRS (20 stairs to climb)
-	3. 	WALKING_DOWNSTAIRS (20 stairs to descend)
-	4. 	SITTING (sitting down in a chair)
-	5. 	STANDING (standing up from a sitting position)
-	6. 	LAYING
+	1 -	WALKING
+	2 -	WALKING_UPSTAIRS (20 stairs to climb)
+	3 -	WALKING_DOWNSTAIRS (20 stairs to descend)
+	4 -	SITTING (sitting down in a chair)
+	5 -	STANDING (standing up from a sitting position)
+	6 -	LAYING
 	
 	Two sets of data were taken: training and test. A number of volunteers were selected for the two tasks.
 	
