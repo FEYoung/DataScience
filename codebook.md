@@ -11,7 +11,7 @@
 		descend 20 stairs, 
 		ascend 20 stairs.
 	
-	The raw data code for each task is defined here:
+	The raw data code for each activity is defined here:
 
 		1 -	walking
 		
