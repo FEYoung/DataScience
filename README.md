@@ -80,7 +80,7 @@ In addition there are two other files:
 	3.	information on the variables selected;
 
 2.	run_analysis.R - contains the R script to process the
-	dataset following the instructions given as:
+	dataset following the instructions stated. However, I swapped tasks 3 and 4 as it was easier to rename the variables this way around.
 	
 	1.	Merges the training and the test data sets to create one
 		data set. 
@@ -88,11 +88,11 @@ In addition there are two other files:
 	2. 	Extracts only the measurements on the mean and
 		standard deviation for each measurement.
 
-	3.	Uses descriptive activity names to name the activities
-		in the data set 
-
-	4.	Appropriately labels the data set with descriptive
+	3.	Appropriately labels the data set with descriptive
 		variable names. 
+
+	4.	Uses descriptive activity names to name the activities
+		in the data set 
 
 	5. 	From the data set in step 4,
 		creates a second, independent tidy data set with the average of each variable for each activity and each subject.
