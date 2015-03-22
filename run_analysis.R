@@ -1,7 +1,7 @@
 Tidying a raw dataset based on the paper
 Anguita D etal., (2012) "Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine"
 (full reference see readme.txt)
-==========================================================================
+===================================================================================================================
 
 1.	Experiment design
 
@@ -18,7 +18,7 @@ Anguita D etal., (2012) "Human Activity Recognition on Smartphones using a Multi
 		walkingdownstairs = descend 20 stairs, 
 		walkingupstairs = ascend 20 stairs.
 
-			A video of a volunteer carrying out the activities entitled "Activity recognition experiment using smartphone sensors" is available online from youtube.com at https://www.youtube.com/watch?v=XOEN9W05_4A
+	A video of a volunteer carrying out the activities entitled "Activity recognition experiment using smartphone sensors" is available online from youtube.com at https://www.youtube.com/watch?v=XOEN9W05_4A
 		
 	The raw data codes and how they relate to descriptive names for each activity is defined here:
 
@@ -36,13 +36,11 @@ Anguita D etal., (2012) "Human Activity Recognition on Smartphones using a Multi
 
 	Two sets of data were taken: training and test. A number of volunteers were selected for the two tasks:
 	
-		Test data:		30% or 9 of the 30 volunteers were
-						selected for this task.
+		Test data:	30% or 9 of the 30 volunteers were selected for this task.
 						
-		Training data: 	70% or 21 of the 30 volunteers were
-						selected for this task.
+		Training data: 	70% or 21 of the 30 volunteers were selected for this task.
 
-	What the variable represent
+	What the variables represent
 	(quoted from the original codebook)
 
 	"For each activity type data was collected on the X, Y, Z
@@ -56,7 +54,7 @@ Anguita D etal., (2012) "Human Activity Recognition on Smartphones using a Multi
 
 	Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag. (Note the 'f' to indicate frequency domain signals)." 		
 						
-	============================================================
+===================================================================================================================
 	
 2.	Processing the raw data
 
@@ -78,7 +76,6 @@ Anguita D etal., (2012) "Human Activity Recognition on Smartphones using a Multi
 		y_train.txt
 			activity variables: 1 - 6
 
-	============================================================
 	
 	1.	three R libraries were loaded before raw data was processed:
 	
