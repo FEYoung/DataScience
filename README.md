@@ -80,7 +80,8 @@ In addition there are two other files:
 	3.	information on the variables selected;
 
 2.	run_analysis.R - contains the R script to process the
-	dataset following the instructions stated. However, I swapped tasks 3 and 4 as it was easier to rename the variables this way around.
+	dataset following the instructions stated. However, I swapped tasks 3 and 4 as it was easier to rename the
+	variables this way around.
 	
 	1.	Merges the training and the test data sets to create one
 		data set. 
@@ -101,23 +102,23 @@ In addition there are two other files:
 
 Reference sources:
 
-1.	Inside Activity Tracking (2013) "Data Science, wearable
-	  computing and the battle for the Throne as World's Top
-	  Sports Brand"
-	  accessed at 13:30 on 04 March 2015 from
-    http://www.insideactivitytracking.com/data-science-activity-tracking-and-the-battle-for-the-worlds-top-sports-brand/
+1.	Inside Activity Tracking (2013) "Data Science, wearable computing and
+	the battle for the Throne as World's Top Sports Brand" accessed at 13:30 on 04 March 2015 from
+    	http://www.insideactivitytracking.com/data-science-activity-tracking-and-the-battle-for-the-worlds-top-sports-brand/
 
 2.	UCI Machine Learning Repository
-	  "Human Activity Recognition using Smartphones Data Set"
-	  available online at 	http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
+	"Human Activity Recognition using Smartphones Data Set"
+	available online at http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
 
-3.	Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra, Jorge L. Reyes-Ortiz. Human Activity Recognition on
-    Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. 4th International Workshop of Ambient  
-    Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012. Published in:
-    Bravo J, Hervas R, Rodriguez M (Eds.), Lecture Notes in Computer Science - Ambient Assisted Living and Home Care,
-    Vol. 7657, pp. 216-223 Stringer-Verlag Berlin, Heidelberg available online at www.springer.com/gb/book/9783642353949
+3.	Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra, Jorge L.
+	Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector
+	Machine. 4th International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012.
+	Published in:
+	Bravo J, Hervas R, Rodriguez M (Eds.), Lecture Notes in Computer Science - Ambient Assisted Living and Home
+	Care, Vol. 7657, pp. 216-223 Stringer-Verlag Berlin, Heidelberg available online at
+	www.springer.com/gb/book/9783642353949
 
-4.	A video of the experiment entitled "Activity recognition experiment using smartphone sensors" is available online
-	  from youtube.com at https://www.youtube.com/watch?v=XOEN9W05_4A
+4.	A video of the experiment entitled "Activity recognition experiment
+	using smartphone sensors" is available online from youtube.com at https://www.youtube.com/watch?v=XOEN9W05_4A
 		
 ==============================================================
