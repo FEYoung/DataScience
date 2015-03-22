@@ -1,6 +1,5 @@
 Tidying a raw dataset based on the paper
-Anguita D etal., (2012) "Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine"
-(full reference see readme.txt)
+Anguita D etal., (2012) "Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine" (full reference see readme.txt)
 ====================================================================================================================
 
 1.	Experiment design
