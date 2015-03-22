@@ -58,16 +58,13 @@ Tidying a raw dataset based on the paper - Anguita D etal., (2012) "Human Activi
 2.	Processing the raw data
 
 	The following six files contained the raw data for this project:
-	
-	Test data:
+
 	1.	subject_test.txt
 		volunteer numbers: 2, 4, 9, 10, 12, 13, 18, 20, 24
 	2.	X_test.txt
 		measured variables: V1 - V561
 	3.	y_test.txt
 		activity variables: 1 - 6
-
-	Training data:
 	4.	subject_train.txt
 		volunteer numbers: 1, 3, 5, 6, 7, 8, 11, 14, 15, 16, 17, 19, 21, 22, 23, 25, 26, 27, 28, 29, 30
 	5.	X_train.txt
