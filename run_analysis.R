@@ -1,140 +1,227 @@
-##1 - loading libraries that will be used during the tidying of the raw data
-library(data.table)
-library(dplyr)
-library(reshape2)
+Tidying a raw dataset based on the paper
+Anguita D etal., (2012) "Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine"
+(full reference see readme.txt)
+==========================================================================
 
-##2 - merging the six datasets into one dataset - 
-	##2.1 test dataset compilation
+1.	Experiment design
 
-		##reading the test txt files into tables
-		volunteerstest <- read.table("subject_test.txt")
-		variablestest <- read.table("X_test.txt")
-		activitytest <- read.table("y_test.txt")
+	Hypothesis - can a smartphone accelerometer and gyroscope be used to track the activity of a person?
 
-			##merging the three datasets into one table - test dataset
-			testdataset <- cbind(volunteerstest, activitytest, variablestest)
-			
-	##2.2 training dataset compilation
-			
-		##reading the training txt files into tables
-		volunteerstraining <- read.table("subject_train.txt")
-		variablestraining <- read.table("X_train.txt")
-		activitytraining <- read.table("y_train.txt")
+	There were 30 volunteers within an age bracket of 19 - 48 years of age.
 
-			##merging the three datasets into one table - training dataset
-			trainingdataset <- cbind(volunteerstraining, activitytraining, variablestraining)
-			
-	##2.3 merging the two datasets - testdataset & trainingdataset
-	mergedsubset <- rbind(testdataset, trainingdataset)
-
-
-##3 - extracting measurements with mean and standard deviation only for the following 17 variables:
-
-	##tBodyAcc-XYZ, tGravityAcc-XYZ, tBodyAccJerk-XYZ, tBodyGyro-XYZ, tBodyGyroJerk-XYZ, tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag, fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccMag, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag.
+	Each volunteer was asked to complete the following activities one after the other in this order:
 	
-	##thus providing a total of 66 columns, plus 2 columns for volunteernumber and activitytype
-	meanstdsubset <- mergedsubset[c(1:2, 3:8, 43:48, 83:88, 123:128, 163:168, 203:204, 216:217, 229:230, 242:243, 255:256, 268:273, 347:352, 426:431, 505:506, 518:519, 531:532, 544:545)]
+		sitting = sit down from a standing position, 
+		standing = stand up from the sitting position, 
+		laying = asked to lay down on a table from a standing position,
+		walking = walk along a long corridor, 
+		walkingdownstairs = descend 20 stairs, 
+		walkingupstairs = ascend 20 stairs.
+
+			A video of a volunteer carrying out the activities entitled "Activity recognition experiment using smartphone sensors" is available online from youtube.com at https://www.youtube.com/watch?v=XOEN9W05_4A
+		
+	The raw data codes and how they relate to descriptive names for each activity is defined here:
+
+		1 -	walking
+		
+		2 -	walkingupstairs 
+		
+		3 -	walkingdownstairs
+		
+		4 -	sitting
+		
+		5 -	standing
+		
+		6 -	laying
+
+	Two sets of data were taken: training and test. A number of volunteers were selected for the two tasks:
 	
-##4 - renaming the columns of mergeddataset so it is easier to understand the variables
-		columnnames <- c("volunteernumber", "activitytype",
-		"timebodyaccelerationmeanaxisx",
-		"timebodyaccelerationmeanaxisy",
-		"timebodyaccelerationmeanaxisz",
-		"timebodyaccelerationstdaxisx",
-		"timebodyaccelerationstdaxisy",
-		"timebodyaccelerationstdaxisz",
-		"timegravityaccelerationmeanaxisx",
-		"timegravityaccelerationmeanaxisy",
-		"timegravityaccelerationmeanaxisz",
-		"timegravityaccelerationstdaxisx",
-		"timegravityaccelerationstdaxisy",
-		"timegravityaccelerationstdaxisz",
-		"timebodyaccelerationjerkmeanaxisx",
-		"timebodyaccelerationjerkmeanaxisy",
-		"timebodyaccelerationjerkmeanaxisz",
-		"timebodyaccelerationjerkstdaxisx",
-		"timebodyaccelerationjerkstdaxisy",
-		"timebodyaccelerationjerkstdaxisz",
-		"timebodygyroscopemeanaxisx",
-		"timebodygyroscopemeanaxisy",
-		"timebodygyroscopemeanaxisz",
-		"timebodygyroscopestdaxisx",
-		"timebodygyroscopestdaxisy",
-		"timebodygyroscopestdaxisz",
-		"timebodygyroscopejerkmeanaxisx",
-		"timebodygyroscopejerkmeanaxisy",
-		"timebodygyroscopejerkmeanaxisz",
-		"timebodygyroscopejerkstdaxisx",
-		"timebodygyroscopejerkstdaxisy",
-		"timebodygyroscopejerkstdaxisz",
-		"timebodyaccelerationmagnitudemean",
-		"timebodyaccelerationmagnitudestd",
-		"timegravityaccelerationmagnitudemean",
-		"timegravityaccelerationmagnitudestd",
-		"timebodyaccelerationjerkmagnitudemean",
-		"timebodyaccelerationjerkmagnitudestd",
-		"timebodygyroscopemagnitudemean",
-		"timebodygyroscopemagnitudestd",
-		"timebodygyroscopejerkmagnitudemean",
-		"timebodygyroscopejerkmagnitudestd",
-		"frequencybodyaccelerationmeanaxisx",
-		"frequencybodyaccelerationmeanaxisy",
-		"frequencybodyaccelerationmeanaxisz",
-		"frequencybodyaccelerationstdaxisx",
-		"frequencybodyaccelerationstdaxisy",
-		"frequencybodyaccelerationstdaxisz",
-		"frequencybodyaccelerationjerkmeanaxisx",
-		"frequencybodyaccelerationjerkmeanaxisy",
-		"frequencybodyaccelerationjerkmeanaxisz",
-		"frequencybodyaccelerationjerkstdaxisx",
-		"frequencybodyaccelerationjerkstdaxisy",
-		"frequencybodyaccelerationjerkstdaxisz",
-		"frequencybodygyroscopemeanaxisx",
-		"frequencybodygyroscopemeanaxisy",
-		"frequencybodygyroscopemeanaxisz",
-		"frequencybodygyroscopestdaxisx",
-		"frequencybodygyroscopestdaxisy",
-		"frequencybodygyroscopestdaxisz",
-		"frequencybodyaccelerationmagnitudemean",
-		"frequencybodyaccelerationmagnitudestd",
-		"frequencybodyaccelerationjerkmagnitudemean",
-		"frequencybodyaccelerationjerkmagnitudestd",
-		"frequencybodygyroscopemagnitudemean",
-		"frequencybodygyroscopemagnitudestd",
-		"frequencybodygyroscopejerkmagnitudemean",
-		"frequencybodygyroscopejerkmagnitudestd")
-			##renaming the columns of meanstdsubset
-			colnames(meanstdsubset) <- sapply(columnnames, as.character)
+		Test data:		30% or 9 of the 30 volunteers were
+						selected for this task.
+						
+		Training data: 	70% or 21 of the 30 volunteers were
+						selected for this task.
 
-			
-##5 - rename the activities from numeric to descriptive names 
-	##defined as 1 = walking, 2 = walkingupstairs, 3 = walkingdownstairs, 4 = sitting, 5 = standing, 6 = laying
+	What the variable represent
+	(quoted from the original codebook)
+
+	"For each activity type data was collected on the X, Y, Z
+	axis of the volunteers motion measured using the accelerometer (Acc) and gyroscope (Gyro) motion detectors embedded in a Samsung Android Galaxy S II smartphone strapped to their waist by a belt.
+ 
+	These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. 
+
+	Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz. 
+
+	Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag). 
+
+	Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag. (Note the 'f' to indicate frequency domain signals)." 		
+						
+	============================================================
 	
-	##5.1 - 1 to walking
-	meanstdsubset$activitytype = ifelse(meanstdsubset$activitytype == "1", "walking", meanstdsubset$activitytype)
+2.	Processing the raw data
+
+	The following six files contained the raw data for this project:
 	
-	##5.2 - 2 to walkingupstairs
-	meanstdsubset$activitytype = ifelse(meanstdsubset$activitytype == "2", "walkingupstairs", meanstdsubset$activitytype)
+	Test data:
+		subject_test.txt
+			volunteer numbers: 2, 4, 9, 10, 12, 13, 18, 20, 24
+		X_test.txt
+			measured variables: V1 - V561
+		y_test.txt
+			activity variables: 1 - 6
 
-	##5.3 - 3 to walkingdownstairs
-	meanstdsubset$activitytype = ifelse(meanstdsubset$activitytype == "3", "walkingdownstairs", meanstdsubset$activitytype)
+	Training data:
+		subject_train.txt
+			volunteer numbers: 1, 3, 5, 6, 7, 8, 11, 14, 15, 16, 17, 19, 21, 22, 23, 25, 26, 27, 28, 29, 30
+		X_train.txt
+			measured variables: V1 - V561
+		y_train.txt
+			activity variables: 1 - 6
 
-	##5.4 - 4 to sitting
-	meanstdsubset$activitytype = ifelse(meanstdsubset$activitytype == "4", "sitting", meanstdsubset$activitytype)
+	============================================================
+	
+	1.	three R libraries were loaded before raw data was processed:
+	
+		data.table
+		dplyr
+		reshape2
+		
+	2.	The six raw data files were translated into tables and merged
+		into one table - 
+		
+		2.1	compiling the test data
+		2.2	compiling the training data
+		2.3 merging both datasets
+		
+	3.	As per the instructions the columns that related to mean and
+		standard deviation for each of the 17 variables (raw data codes below) were extracted from the merged dataset
+			tBodyAcc-XYZ (6 columns)
+			tGravityAcc-XYZ (6 columns)
+			tBodyAccJerk-XYZ (6 columns)
+			tBodyGyro-XYZ (6 columns)
+			tBodyGyroJerk-XYZ (6 columns)
+			tBodyAccMag (2 columns)
+			tGravityAccMag (2 columns)
+			tBodyAccJerkMag (2 columns)
+			tBodyGyroMag (2 columns)
+			tBodyGyroJerkMag (2 columns)
+			fBodyAcc-XYZ (6 columns)
+			fBodyAccJerk-XYZ (6 columns)
+			fBodyGyro-XYZ (6 columns)
+			fBodyAccMag (2 columns)
+			fBodyAccJerkMag (2 columns)
+			fBodyGyroMag (2 columns)
+			fBodyGyroJerkMag (2 columns)
+		ALSO the first two columns of the raw dataset representing volunteer and activity were also extracted
+	
+	4.	the raw column names were renamed for ease of reading, thus
+		V1
+			volunteer number
+		V1.1
+			activity type
+		tBodyAcc-XYZ (6 columns)
+			timebodyaccelerationmeanaxisx
+			timebodyaccelerationmeanaxisy
+			timebodyaccelerationmeanaxisz
+			timebodyaccelerationstdaxisx
+			timebodyaccelerationstdaxisy
+			timebodyaccelerationstdaxisz			
+	
+		tGravityAcc-XYZ (6 columns)
+			timegravityaccelerationmeanaxisx
+			timegravityaccelerationmeanaxisy
+			timegravityaccelerationmeanaxisz
+			timegravityaccelerationstdaxisx
+			timegravityaccelerationstdaxisy
+			timegravityaccelerationstdaxisz	
+		
+		tBodyAccJerk-XYZ (6 columns)
+			timebodyaccelerationjerkmeanaxisx
+			timebodyaccelerationjerkmeanaxisy
+			timebodyaccelerationjerkmeanaxisz
+			timebodyaccelerationjerkstdaxisx
+			timebodyaccelerationjerkstdaxisy
+			timebodyaccelerationjerkstdaxisz		
+		
+		tBodyGyro-XYZ (6 columns)
+			timebodygyroscopemeanaxisx
+			timebodygyroscopemeanaxisy
+			timebodygyroscopemeanaxisz
+			timebodygyroscopestdaxisx
+			timebodygyroscopestdaxisy
+			timebodygyroscopestdaxisz		
+		
+		tBodyGyroJerk-XYZ (6 columns)
+			timebodygyroscopejerkmeanaxisx
+			timebodygyroscopejerkmeanaxisy
+			timebodygyroscopejerkmeanaxisz
+			timebodygyroscopejerkstdaxisx
+			timebodygyroscopejerkstdaxisy
+			timebodygyroscopejerkstdaxisz		
+		
+		tBodyAccMag (2 columns)
+			timebodyaccelerationmagnitudemean
+			timebodyaccelerationmagnitudestd
+		
+		tGravityAccMag (2 columns)
+			timegravityaccelerationmagnitudemean
+			timegravityaccelerationmagnitudestd		
+		
+		tBodyAccJerkMag (2 columns)
+			timebodyaccelerationjerkmagnitudemean
+			timebodyaccelerationjerkmagnitudestd	
+		
+		tBodyGyroMag (2 columns)
+			timebodygyroscopemagnitudemean
+			timebodygyroscopemagnitudestd
 
-	##5.5 - 5 to standing
-	meanstdsubset$activitytype = ifelse(meanstdsubset$activitytype == "5", "standing", meanstdsubset$activitytype)
+		tBodyGyroJerkMag (2 columns)
+			timebodygyroscopejerkmagnitudemean
+			timebodygyroscopejerkmagnitudestd
+		
+		fBodyAcc-XYZ (6 columns)
+			frequencybodyaccelerationmeanaxisx
+			frequencybodyaccelerationmeanaxisy
+			frequencybodyaccelerationmeanaxisz
+			frequencybodyaccelerationstdaxisx
+			frequencybodyaccelerationstdaxisy
+			frequencybodyaccelerationstdaxisz
+		
+		fBodyAccJerk-XYZ (6 columns)
+			frequencybodyaccelerationjerkmeanaxisx
+			frequencybodyaccelerationjerkmeanaxisy
+			frequencybodyaccelerationjerkmeanaxisz
+			frequencybodyaccelerationjerkstdaxisx
+			frequencybodyaccelerationjerkstdaxisy
+			frequencybodyaccelerationjerkstdaxisz		
+		
+		fBodyGyro-XYZ (6 columns)
+			frequencybodygyroscopemeanaxisx
+			frequencybodygyroscopemeanaxisy
+			frequencybodygyroscopemeanaxisz
+			frequencybodygyroscopestdaxisx
+			frequencybodygyroscopestdaxisy
+			frequencybodygyroscopestdaxisz	
+		
+		fBodyAccMag (2 columns)
+			frequencybodyaccelerationmagnitudemean
+			frequencybodyaccelerationmagnitudestd		
+		
+		fBodyAccJerkMag (2 columns)
+			frequencybodyaccelerationjerkmagnitudemean
+			frequencybodyaccelerationjerkmagnitudestd		
+		
+		fBodyGyroMag (2 columns)
+			frequencybodygyroscopemagnitudemean
+			frequencybodygyroscopemagnitudestd		
+					
+		fBodyGyroJerkMag (2 columns)
+			frequencybodygyroscopejerkmagnitudemean
+			frequencybodygyroscopejerkmagnitudestd")	
 
-	##5.6 - 6 to laying
-	meanstdsubset$activitytype = ifelse(meanstdsubset$activitytype == "6", "laying", meanstdsubset$activitytype)
+	5.	renaming the activities from numeric to descriptive names
 
-##6 - calculating the mean value for each variable by volunteer and each of their individual activities
-
-	##6.1 - sorting the dataset by volunteer and then activity type, makes the dataset easier to read
-	sortedsubset <- arrange(meanstdsubset, (volunteernumber), (activitytype))	
-
-		##6.2 - reshaping the dataset into individual activities for each volunteer
-		meltedsubset <- melt(sortedsubset, id.vars = c("volunteernumber", "activitytype"))
-
-			##6.3 - calculating the mean values of all variables
-			meansubset <- dcast(meltedsubset, volunteernumber + activitytype ~ variable, mean)
+	6.	calculating the mean value for each variable, activity type for each volunteer
+		6.1 - sorting the data by volunteer and activity
+		6.2 - reshaping the data into individual activities for each volunteer for each variable means and standard deviation
+		6.3 - calculating the mean of each variable
