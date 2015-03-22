@@ -35,11 +35,9 @@ Tidying a raw dataset based on the paper - Anguita D etal., (2012) "Human Activi
 
 	Two sets of data were taken: training and test. A number of volunteers were selected for the two tasks:
 	
-		Test data:	30% or 9 of the 30 volunteers were
-						selected for this task.
+		Test data:	30% or 9 of the 30 volunteers were selected for this task.
 						
-		Training data: 	70% or 21 of the 30 volunteers were
-						selected for this task.
+		Training data: 	70% or 21 of the 30 volunteers were selected for this task.
 
 	What the variable represent
 	(quoted from the original codebook)
@@ -62,22 +60,22 @@ Tidying a raw dataset based on the paper - Anguita D etal., (2012) "Human Activi
 	The following six files contained the raw data for this project:
 	
 	Test data:
-		subject_test.txt
-			volunteer numbers: 2, 4, 9, 10, 12, 13, 18, 20, 24
-		X_test.txt
-			measured variables: V1 - V561
-		y_test.txt
-			activity variables: 1 - 6
+	1.	subject_test.txt
+		volunteer numbers: 2, 4, 9, 10, 12, 13, 18, 20, 24
+	2.	X_test.txt
+		measured variables: V1 - V561
+	3.	y_test.txt
+		activity variables: 1 - 6
 
 	Training data:
-		subject_train.txt
-			volunteer numbers: 1, 3, 5, 6, 7, 8, 11, 14, 15, 16, 17, 19, 21, 22, 23, 25, 26, 27, 28, 29, 30
-		X_train.txt
-			measured variables: V1 - V561
-		y_train.txt
-			activity variables: 1 - 6
+	4.	subject_train.txt
+		volunteer numbers: 1, 3, 5, 6, 7, 8, 11, 14, 15, 16, 17, 19, 21, 22, 23, 25, 26, 27, 28, 29, 30
+	5.	X_train.txt
+		measured variables: V1 - V561
+	6.	y_train.txt
+		activity variables: 1 - 6
 
-	
+====================================================================================================================	
 	1.	three R libraries were loaded before raw data was processed:
 	
 		data.table
@@ -89,7 +87,7 @@ Tidying a raw dataset based on the paper - Anguita D etal., (2012) "Human Activi
 		
 		2.1	compiling the test data
 		2.2	compiling the training data
-		2.3 merging both datasets
+		2.3 	merging both datasets
 		
 	3.	As per the instructions the columns that related to mean and
 		standard deviation for each of the 17 variables (raw data codes below) were extracted from the merged dataset
