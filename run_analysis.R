@@ -35,9 +35,8 @@ library(reshape2)
 ##2 - extracting measurements with mean and standard deviation only for the following 17 variables:
 
 	##tBodyAcc-XYZ, tGravityAcc-XYZ, tBodyAccJerk-XYZ, tBodyGyro-XYZ, tBodyGyroJerk-XYZ, tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag, fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccMag, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag.
-
-	##need a better method that this one...
-	meanstdsubset <- mergedsubset[c(1:2, 3:8, 43:48, 83:88, 123:128, 163:168, 203:204, 216:217, 229:230, 242:243, 255:256, 268:273, 347:352, 426:431, 505:506, 518:519, 531:532, 544:545)]
+	meanstd <- grepl("mean|std|volunteernumber|activitytype", colnames(mergedsubset)) & !grepl("meanFreq", colnames(mergedsubset))
+	meanstdsubset <- mergedsubset[, meanstd]
 
 	
 ##3 - renaming the columns of mergeddataset so they are easier to understanding the variable they are referring to
