@@ -59,6 +59,8 @@ when unzipped "UCI HAR Dataset" includes the following files and directories:
 A selection of the files above were used in cleaning the dataset and they are :
 (included in this branch) 
 
+	features.txt - list of the variable names
+
 	subject_test.txt - volunteer numbers: 2, 4, 9, 10, 12, 13, 18, 20, 24
 	X_test.txt - measured variables: V1 - V561
 	y_test.txt - activity variables: 1 - 6
