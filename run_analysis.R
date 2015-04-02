@@ -39,10 +39,11 @@ library(reshape2)
 	meanstdsubset <- mergedsubset[, meanstd]
 
 	
-##3 - renaming the columns of mergeddataset so they are easier to understanding the variable they are referring to
+##3 - renaming the columns of mergeddataset so they are easier to understand the variable they are referring to
 
 	names(meanstdsubset) <- gsub("^t", "time", names(meanstdsubset))
 	names(meanstdsubset) <- gsub("Body", "body", names(meanstdsubset))
+	names(meanstdsubset) <- gsub("Gravity", "gravity", names(meanstdsubset))
 	names(meanstdsubset) <- gsub("Acc", "accelerometer", names(meanstdsubset))	
 	names(meanstdsubset) <- gsub("Gyro", "gyroscope", names(meanstdsubset))
 	names(meanstdsubset) <- gsub("Jerk", "jerk", names(meanstdsubset))
@@ -52,7 +53,7 @@ library(reshape2)
 	names(meanstdsubset) <- gsub("Y", "axisy", names(meanstdsubset))
 	names(meanstdsubset) <- gsub("Z", "axisz", names(meanstdsubset))
 	names(meanstdsubset) <- gsub("[.]", "", names(meanstdsubset))
-
+	
 			
 ##4 - rename the activities from numeric to descriptive names 
 	##defined as 1 = walking, 2 = walkingupstairs, 3 = walkingdownstairs, 4 = sitting, 5 = standing, 6 = laying	
@@ -63,6 +64,7 @@ library(reshape2)
 	meanstdsubset$activitytype = ifelse(meanstdsubset$activitytype == "5", "standing", meanstdsubset$activitytype)
 	meanstdsubset$activitytype = ifelse(meanstdsubset$activitytype == "6", "laying", meanstdsubset$activitytype)
 
+	
 ##5 - calculating the mean value for each variable by volunteer and each of their individual activities
 
 	##5.1 - sorting the dataset by volunteer and then activity type, makes the dataset easier to read
@@ -73,3 +75,7 @@ library(reshape2)
 
 			##5.3 - calculating the mean values of all variables
 			meansubset <- dcast(meltedsubset, volunteernumber + activitytype ~ variable, mean)
+
+			
+##saving the output to a text file
+write.table(meansubset, "tidydataset.txt", row.name = FALSE)			
