@@ -16,15 +16,15 @@ Project 1 files:
       https://class.coursera.org/exdata-013/human_grading/view/courses/973507/assessments/3/submissions
 
   2.  household-power-consumption-dataset.R
-  
-  The eight generated files:
+
+The eight generated files:
 
   1.  plot1.R
-  2.  plot.png
+  2.  plot1.png
   3.  plot2.R
   4.  plot2.png
   5.  plot3.R
   6.  plot3.png
   7.  plot4.R
   8.  plot4.png
-  
+
