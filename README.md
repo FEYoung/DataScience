@@ -11,12 +11,12 @@ There are two projects for this module.
 
 Project 1 files:
 
-  household-power-consumption-dataset.R
-  project1-instructions.md
-  codebook-project1.md
+  1.  household-power-consumption-dataset.R
+  2.  project1-instructions.md
+  3.  codebook-project1.md
 
 Project 2 files:
 
-  project2-instructions.md
-  codebook-project1.md
+  1.  project2-instructions.md
+  2.  codebook-project1.md
 
