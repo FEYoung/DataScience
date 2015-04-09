@@ -42,9 +42,11 @@ png("plot1.png")
 				names(householdsubset) <- gsub("Global_active_power", "globalactivepower (kilowatts)", names(householdsubset))
 	
 					##6 - selecting the rows 1st/2nd February 2007. row numbers 66637-69516
-					##changing date from factor to time
+					
+					##6.1 - changing date from factor to time
 					householdsubset$date <- strptime(householdsubset$date, format = "%d/%m/%Y")	
-					##select the rows 1st/2nd February 2007
+					
+					##6.2 - select the rows 1st/2nd February 2007
 					datasubset <- subset(householdsubset, date >= "2007-02-01" & date <= "2007-02-02")
 	
 						##7 - generating the graph
