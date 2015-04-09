@@ -38,8 +38,8 @@ png("plot2.png")
 	
 	
 			##4 - create two data tables - 1) date & time, 2) global active power
-				householddatesubset <- household[c(1:2)]
-				householdpowersubset <- household[c(3)]
+			householddatesubset <- household[c(1:2)]
+			householdpowersubset <- household[c(3)]
 
 				
 				##5 - creating a data frame with merged date and time columns
