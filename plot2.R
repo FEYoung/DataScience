@@ -11,7 +11,7 @@ Graph style	:	line graph
 
 Graph size	:	480 pixels by 480 pixels
 
-Graph title :	Global Active Power
+Graph title 	:	None
 
 Dataset		:	dates 2007-02-01 and 2007-02-02 (1st & 2nd of February 2007)
 
