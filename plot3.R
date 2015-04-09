@@ -69,7 +69,7 @@ png("plot3.png")
 							##8 - generating the graph						
 
 							#8.1 - creating a blank graph
-							with(datasubset, plot(datasubset$date, datasubset$submetering1, xlab= "", ylab = "Energy sub metering", type = "n"))
+							with(datasubset, plot(datasubset$date, datasubset$submetering1, xlab= "", ylab = "Energy sub metering (Watt Hour)", type = "n"))
 
 							##8.2 - plotting the sub metering lines on the graph
 							lines(datasubset$date, datasubset$submetering1, type = "l", lty = 1, lwd = 1, col = "black")
