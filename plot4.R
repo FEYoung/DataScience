@@ -73,7 +73,7 @@ png("plot4.png")
 	
 							##8 - generating the graph						
 
-							##8.1 - how to fill the graphic with the four graphs - 2 rows and 2 columns. Filling by rows.
+							##8.1 - how to fill the graphic with the four graphs - 2 rows and 2 columns. Filling by columns.
 							par(mfcol = c(2,2))
 							
 							##8.2 - selecting the data table a the basis of the graph
