@@ -76,7 +76,7 @@ png("plot4.png")
 							##8.1 - how to fill the graphic with the four graphs - 2 rows and 2 columns. Filling by rows.
 							par(mfcol = c(2,2))
 							
-							##8.2 - selecting the data table for graph basis
+							##8.2 - selecting the data table a the basis of the graph
 							with(datasubset, {
 
 								##8.3 - graph top right
@@ -96,4 +96,12 @@ png("plot4.png")
 									lines(datasubset$datetime, datasubset$voltage, type = "l", lty = 1, lwd = 1)
 								
 								##8.6 - graph bottom right
+								plot(datasubset$datetime, datasubset$globalreactivepower, xlab = "datetime", ylab = "Global_reactive_power (Kilowatts)", type = "n")
+									lines(datasubset$datetime, datasubset$globalreactivepower, type = "h", lty = 1, lwd = 1)
 								
+							##closing graph generation
+							})
+							
+														
+									##9 - closing the graphic png file
+									dev.off()
