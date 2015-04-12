@@ -7,7 +7,7 @@ Johns Hopkins University, Bloomberg School of Public Heath
 
 --------------------------------------------------------------
 
-There are two projects for this module.
+Project One
 
 Project 1 files:
 
