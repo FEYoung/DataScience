@@ -53,32 +53,32 @@ png("plot2.png")
 			##4.3 - merging pollutantsubset and restsubset
 			mergedsubset <- cbind(pollutantsubset, restsubset)
 
+			##4.4 - renaming columns
+			names(mergedsubset) <- gsub("pollutantsubset", "pollutant", names(mergedsubset))
+			names(mergedsubset) <- gsub("fips", "area", names(mergedsubset))
+			names(mergedsubset) <- gsub("Emissions", "emissions", names(mergedsubset))
 
-				##5 - creating a tidydataset
 
-				##5.1 - renaming columns
-				names(mergedsubset) <- gsub("pollutantsubset", "pollutant", names(mergedsubset))
-				names(mergedsubset) <- gsub("fips", "area", names(mergedsubset))
-				names(mergedsubset) <- gsub("Emissions", "emissions", names(mergedsubset))
+				##5 - subsetting Baltimore City and sorting by year
 
-				##5.2 - selecting Baltimore City subset "24510"
+				##5.1 - selecting Baltimore City subset "24510"
 				baltimoresubset <- subset(mergedsubset, area == 24510)
 				baltimoresubset <- subset(baltimoresubset[c(3,4)])
 
-				##5.3 - sorting the data by year
+				##5.2 - sorting the data by year
 				baltimoresubset <- arrange(baltimoresubset, (year))
 
 					
 					##6 - calculating total emissions for each year
 
 					##6.1 - reshaping the dataset into individual years
-					meltedsubset <- melt(baltimoresubset, id.vars = c("year")
+					meltedsubset <- melt(baltimoresubset, id.vars = c("year"))
 
 					##6.2 - calculating the mean values of all variables
 					finalsubset <- dcast(meltedsubset, year ~ variable, mean)
 
 						##7 - plotting the graph	
-						plot(finalsubset$year, finalsubset$emissions, xlab="Year", ylab = "Emissions (tons)", main = "Mean PM2.5 emissions \n in Baltimore City, Maryland, USA \n for 1999 to 2008", type = "o")
+						plot(finalsubset$year, finalsubset$emissions, xlab="Year", ylab = "Emissions (tons)", main = "PM2.5 emissions \n in Baltimore City, Maryland, USA \n for 1999 to 2008", type = "o")
 
 							##8 - closing graph save function
 							dev.off()

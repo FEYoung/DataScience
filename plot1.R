@@ -1,3 +1,23 @@
+DATA SPECIALISM
+
+MODULE 4 - Exploratory data analysis
+
+Project 2
+
+Assignment
+
+The overall goal of this assignment is to explore the National Emissions Inventory database and see what it say about fine particulate matter pollution in the United states over the 10-year period 1999–2008. You may use any R package you want to support your analysis.
+
+Questions
+
+You must address the following questions and tasks in your exploratory analysis.
+
+For each question/task you will need to make a single plot. 
+
+Unless specified, you can use any plotting system in R to make your plot.
+
+==============================================================
+
 PLOT 1
 
 Have total emissions from PM2.5 decreased in the United States from 1999 to 2008? 
@@ -9,7 +29,7 @@ Using the base plotting system, make a plot showing the total PM2.5 emissions fr
 R SCRIPT
 
 ##1 - opening file to save graph
-png("plot1.png", width = 1024, height = 768)
+png("plot1.png")
 
 
 	##2 - loading libraries and datasets
@@ -25,68 +45,24 @@ png("plot1.png", width = 1024, height = 768)
 		
 			##4 - creating a tidydataset
 			
-			##4.1 - subset with year, scc.level.three, emissions
-			pm25subset <- subset(dataset[c(2, 9, 18, 20)])
-
-			##4.2 - selecting years 1999, 2002, 2005, 2008
-			pm25subset <- subset(pm25subset, year == "1999" | year == "2002" | year == "2005" | year == "2008")	
-					
+			##4.1 - subset with year, emissions
+			pm25subset <- subset(dataset[c(18, 20)])
+			
 			##4.2 - renaming columns
-			names(pm25subset) <- gsub("Data.Category", "datacategory", names(pm25subset))
-			names(pm25subset) <- gsub("SCC.Level.Three", "pollutant", names(pm25subset))
-			names(pm25subset) <- gsub("Emissions", "emissions", names(pm25subset))
-		
-			##4.3 - merging datacategory and pollutant into one column
-			merged <- paste(pm25subset$pollutant, pm25subset$datacategory, sep = ".")
+			names(pm25subset) <- gsub("Emissions", "emissions", names(pm25subset))			
 			
-			##4.4 - recombining merged df with pm25subset - columns 3,4
-			finalsubset <- cbind(merged, pm25subset[c(3,4)])
+
+				##5 - calculating total emissions for each year
 			
-			##4.5 - renaming merged column
-			names(finalsubset) <- gsub("merged", "pollutant", names(finalsubset))
-			
-			##4.6 - sorting the dataset for easy reading
-			finalsubset <- arrange(finalsubset, (year), (pollutant), (emissions))	
-			
-			
-				##5 - calculating mean of each emission for each year and each pollutant type
-				meltedsubset <- melt(finalsubset, id.vars = c("year", "pollutant"))
-				finalsubset <- dcast(meltedsubset, year + pollutant ~ variable, mean)
+				##5.1 - reshaping the dataset into individual years
+				meltedsubset <- melt(pm25subset, id.vars = c("year"))
+
+				##5.2 - calculating the mean values of all variables
+				finalsubset <- dcast(meltedsubset, year ~ variable, mean)
 
 						
-					##6 - plot 4 graph - one for each year. filling by rows
-					par(mfrow = c(2,2), oma = c(5,4,4,2))
-
-					with(finalsubset, {
-
-						##6.1 - year 1999
-						
-						plot(finalsubset$pollutant, finalsubset$emissions, xlab="Pollutant", ylab = "Emissions (tons)", xaxt="n", main = "1999", type = "n")
-						
-						lines(finalsubset$emissions, finalsubset$year == 1999, type = "l", lty = 1, lwd = 1)
-						
-						##6.2 - year 2002
-						plot(finalsubset$pollutant, finalsubset$emissions, xlab="Pollutant", ylab = "Emissions (tons)", xaxt="n", main = "2002", type = "n")
-						
-						lines(finalsubset$pollutant, finalsubset$year == 2002, type = "l", lty = 1, lwd = 1)
-
-						##6.3 - year 2005
-						plot(finalsubset$pollutant, finalsubset$emissions, xlab="Pollutant", ylab = "Emissions (tons)", xaxt="n", main = "2005", type = "n")
-
-						lines(finalsubset$pollutant, finalsubset$year == 2005, type = "l", lty = 1, lwd = 1)
-
-						##6.4 - year 2008
-						
-						plot(finalsubset$pollutant, finalsubset$emissions, xlab="Pollutant", ylab = "Emissions (tons)", xaxt="n", main = "2008", type = "n")
-
-						lines(finalsubset$pollutant, finalsubset$year == 2008, type = "l", lty = 1, lwd = 1)					
-
-						##6.5 - title for all graphs
-						mtext("Mean PM2.5 emissions for 2421 pollutants \n in the USA \n for the years 1999, 2002, 2005 and 2008", outer = TRUE, cex = 1)
-
-					##closing the graph
-					})
-					
+					##6 - plotting the graph
+					plot(finalsubset$year, finalsubset$emissions, xlab="Year", ylab = "Emissions (tons)", main = "PM2.5 emissions \n for the United States of America \n for years 1999, 2002, 2005, and 2008", type = "o")					
 						
 ##7 - closing graph save function
 dev.off()
