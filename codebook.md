@@ -79,10 +79,10 @@ i.e. unsolicited commercial e-mail.
 	Non-Spam  2788  (60.6%)
 =================================
 
-Column variables and short names
+##Column variables and short names
 (number of times the 'WORD' appears in the e-mail)
 
-variable			    type		short name
+	variable			    type		short name
 1.	word_freq_make:         	continuous.		make
 2.	word_freq_address:      	continuous.		address
 3.	word_freq_all:          	continuous.		all
