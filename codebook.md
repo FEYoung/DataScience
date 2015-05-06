@@ -83,69 +83,65 @@ i.e. unsolicited commercial e-mail.
 10.	Column variables and short names
 	(number of times the 'WORD' appears in the e-mail)
 
-*variable				    type			short name
-*
-*word_freq_make:         	continuous.		make
-*word_freq_address:      	continuous.		address
-*word_freq_all:          	continuous.		all
-*word_freq_3d:           	continuous.		num3d
-*word_freq_our:          	continuous.		our
-*word_freq_over:         	continuous.		over
-*word_freq_remove:       	continuous.		remove
-*word_freq_internet:     	continuous.		internet
-*word_freq_order:        	continuous.		order
-*word_freq_mail:         	continuous.		mail
-*word_freq_receive:      	continuous.		receive
-*word_freq_will:         	continuous.		will
-*word_freq_people:       	continuous.		people
-*word_freq_report:       	continuous.		report
-*word_freq_addresses:    	continuous.		addresses
-*word_freq_free:         	continuous.		free
-*word_freq_business:     	continuous.		business
-*word_freq_email:        	continuous.		email
-*word_freq_you:          	continuous.		you
-word_freq_credit:       	continuous.		credit
-word_freq_your:         	continuous.		your
-word_freq_font:         	continuous.		font
-word_freq_000:          	continuous.		num000
-word_freq_money:        	continuous.		money
-word_freq_hp:           	continuous.		hp
-word_freq_hpl:          	continuous.		hpl
-word_freq_george:       	continuous.		george
-word_freq_650:          	continuous.		num650
-word_freq_lab:          	continuous.		lab
-word_freq_labs:         	continuous.		labs
-word_freq_telnet:       	continuous.		telnet
-word_freq_857:          	continuous.		num857
-word_freq_data:         	continuous.		data
-word_freq_415:          	continuous.		num415
-word_freq_85:           	continuous.		num85
-word_freq_technology:   	continuous.		technology
-word_freq_1999:         	continuous.		num1999
-word_freq_parts:        	continuous.		parts
-word_freq_pm:           	continuous.		pm
-word_freq_direct:       	continuous.		direct
-word_freq_cs:           	continuous.		cs
-word_freq_meeting:      	continuous.		meeting
-word_freq_original:     	continuous.		original
-word_freq_project:      	continuous.		project
-word_freq_re:           	continuous.		re
-word_freq_edu:          	continuous.		edu
-word_freq_table:        	continuous.		table
-word_freq_conference:   	continuous.		conference
-
-char_freq_;:            	continuous.		charsemicolon
-char_freq_(:            	continuous.		charroundbracket
-char_freq_[:            	continuous.		charsquarebracket
-char_freq_!:            	continuous.		charexclamation
-char_freq_$:            	continuous.		chardollar
-char_freq_#:            	continuous.		charhash
-
-capital_run_length_average: continuous.		capitalave
-capital_run_length_longest: continuous.		capitallong
-capital_run_length_total:   continuous.		capitaltota
-
-type						nominal.		type"
+0.	variable			    type		short name
+1.	word_freq_make:         	continuous.		make
+2.	word_freq_address:      	continuous.		address
+3.	word_freq_all:          	continuous.		all
+4.	word_freq_3d:           	continuous.		num3d
+5.	word_freq_our:          	continuous.		our
+6.	word_freq_over:         	continuous.		over
+7.	word_freq_remove:       	continuous.		remove
+8.	word_freq_internet:     	continuous.		internet
+9.	word_freq_order:        	continuous.		order
+10.	word_freq_mail:         	continuous.		mail
+11.	word_freq_receive:      	continuous.		receive
+12.	word_freq_will:         	continuous.		will
+13.	word_freq_people:       	continuous.		people
+14.	word_freq_report:       	continuous.		report
+15.	word_freq_addresses:    	continuous.		addresses
+16.	word_freq_free:         	continuous.		free
+17.	word_freq_business:     	continuous.		business
+18.	word_freq_email:        	continuous.		email
+19.	word_freq_you:          	continuous.		you
+20.	word_freq_credit:       	continuous.		credit
+21.	word_freq_your:         	continuous.		your
+22.	word_freq_font:         	continuous.		font
+23.	word_freq_000:          	continuous.		num000
+24.	word_freq_money:        	continuous.		money
+25.	word_freq_hp:           	continuous.		hp
+26.	word_freq_hpl:          	continuous.		hpl
+27.	word_freq_george:       	continuous.		george
+28.	word_freq_650:          	continuous.		num650
+29.	word_freq_lab:          	continuous.		lab
+30.	word_freq_labs:         	continuous.		labs
+31.	word_freq_telnet:       	continuous.		telnet
+32.	word_freq_857:          	continuous.		num857
+33.	word_freq_data:         	continuous.		data
+34.	word_freq_415:          	continuous.		num415
+35.	word_freq_85:           	continuous.		num85
+36.	word_freq_technology:   	continuous.		technology
+37.	word_freq_1999:         	continuous.		num1999
+38.	word_freq_parts:        	continuous.		parts
+39.	word_freq_pm:           	continuous.		pm
+40.	word_freq_direct:       	continuous.		direct
+41.	word_freq_cs:           	continuous.		cs
+42.	word_freq_meeting:      	continuous.		meeting
+43.	word_freq_original:     	continuous.		original
+44.	word_freq_project:      	continuous.		project
+45.	word_freq_re:           	continuous.		re
+46.	word_freq_edu:          	continuous.		edu
+47.	word_freq_table:        	continuous.		table
+48.	word_freq_conference:   	continuous.		conference
+49.	char_freq_;:            	continuous.		charsemicolon
+50.	char_freq_(:            	continuous.		charroundbracket
+51.	char_freq_[:            	continuous.		charsquarebracket
+52.	char_freq_!:            	continuous.		charexclamation
+53.	char_freq_$:            	continuous.		chardollar
+54.	char_freq_#:            	continuous.		charhash
+55.	capital_run_length_average: 	continuous.		capitalave
+56.	capital_run_length_longest: 	continuous.		capitallong
+57.	capital_run_length_total	continuous.		capitaltotal
+58.	type				nominal.		type
 
 ===============================================================
 
