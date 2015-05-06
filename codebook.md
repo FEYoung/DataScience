@@ -83,7 +83,7 @@ i.e. unsolicited commercial e-mail.
 10.	Column variables and short names
 	(number of times the 'WORD' appears in the e-mail)
 
-variable				    type			short name
+*"variable				    type			short name
 
 word_freq_make:         	continuous.		make
 word_freq_address:      	continuous.		address
@@ -145,7 +145,7 @@ capital_run_length_average: continuous.		capitalave
 capital_run_length_longest: continuous.		capitallong
 capital_run_length_total:   continuous.		capitaltota
 
-type						nominal.		type
+type						nominal.		type"
 
 ===============================================================
 
