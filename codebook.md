@@ -83,27 +83,27 @@ i.e. unsolicited commercial e-mail.
 10.	Column variables and short names
 	(number of times the 'WORD' appears in the e-mail)
 
-*"variable				    type			short name
-
-word_freq_make:         	continuous.		make
-word_freq_address:      	continuous.		address
-word_freq_all:          	continuous.		all
-word_freq_3d:           	continuous.		num3d
-word_freq_our:          	continuous.		our
-word_freq_over:         	continuous.		over
-word_freq_remove:       	continuous.		remove
-word_freq_internet:     	continuous.		internet
-word_freq_order:        	continuous.		order
-word_freq_mail:         	continuous.		mail
-word_freq_receive:      	continuous.		receive
-word_freq_will:         	continuous.		will
-word_freq_people:       	continuous.		people
-word_freq_report:       	continuous.		report
-word_freq_addresses:    	continuous.		addresses
-word_freq_free:         	continuous.		free
-word_freq_business:     	continuous.		business
-word_freq_email:        	continuous.		email
-word_freq_you:          	continuous.		you
+*variable				    type			short name
+*
+*word_freq_make:         	continuous.		make
+*word_freq_address:      	continuous.		address
+*word_freq_all:          	continuous.		all
+*word_freq_3d:           	continuous.		num3d
+*word_freq_our:          	continuous.		our
+*word_freq_over:         	continuous.		over
+*word_freq_remove:       	continuous.		remove
+*word_freq_internet:     	continuous.		internet
+*word_freq_order:        	continuous.		order
+*word_freq_mail:         	continuous.		mail
+*word_freq_receive:      	continuous.		receive
+*word_freq_will:         	continuous.		will
+*word_freq_people:       	continuous.		people
+*word_freq_report:       	continuous.		report
+*word_freq_addresses:    	continuous.		addresses
+*word_freq_free:         	continuous.		free
+*word_freq_business:     	continuous.		business
+*word_freq_email:        	continuous.		email
+*word_freq_you:          	continuous.		you
 word_freq_credit:       	continuous.		credit
 word_freq_your:         	continuous.		your
 word_freq_font:         	continuous.		font
