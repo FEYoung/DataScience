@@ -4,7 +4,7 @@ Young FE (2015) COURSE PROJECT based on the paper entitled:
 
 assignment for the
 
-DATA SCIENCE SPECIALISM: Module 3 - Getting and Cleaning Data 
+DATA SCIENCE SPECIALISM: Module 3 - Getting and Cleaning Data (completed March 2015)
 
 Author: Jeff Leek
 Associate Professor of Biostatistics
