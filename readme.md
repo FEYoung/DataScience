@@ -1,6 +1,6 @@
-Data Specialism
+#Data Specialism
 
-Module 4 - Exploratory Data Analysis
+##Module 4 - Exploratory Data Analysis
 
 by Roger D. Peng, PhD, Jeff Leek, PhD, Brian Caffo, PhD
 Johns Hopkins University, Bloomberg School of Public Heath
@@ -17,4 +17,4 @@ Two projects held in separate branches -
 ==========================================================
 
 
-##Completed April 2015
+###Completed April 2015
