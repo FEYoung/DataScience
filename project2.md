@@ -1353,5 +1353,3 @@ humanyeartotal
 
 	
 render("project2.Rmd", html_document())
-
-pandoc project2.html -o project2.pdf
