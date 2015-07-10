@@ -150,7 +150,7 @@ abline(h = mean(exponentials))
 	lines(density(removed), col = "red", lwd = 3)
 ```
 
-![plot of chunk compare graphs2](figure/compare graphs2-1.png) 
+![plot of chunk compare graphs2](figure/compare graphs2-1.png)
 
 ###CONCLUSION
 
