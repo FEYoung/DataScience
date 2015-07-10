@@ -125,7 +125,7 @@ lines(density(population), col = "black", lwd = 3)
 	curve(dexp(x, rate = x.est), add = TRUE, col = "black", lwd = 3)
 ```
 
-![plot of chunk compare graphs1](figure/compare graphs1-1.png) 
+![plot of chunk compare graphs1](figure/compare graphs1-1(2).png) 
 
 
 ```r
@@ -150,7 +150,7 @@ abline(h = mean(exponentials))
 	lines(density(removed), col = "red", lwd = 3)
 ```
 
-![plot of chunk compare graphs2](figure/compare graphs2-1.png) 
+![plot of chunk compare graphs2](figure/compare graphs2-1(2).png) 
 
 ###CONCLUSION
 
