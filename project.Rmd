@@ -1,0 +1,114 @@
+
+##Demonstrating the relationship between miles per gallon and transmission with linear regression models: the mtcars dataset from the R library(datasets)
+
+###Author: F E YOUNG
+###Submission date: 27 September 2015
+
+###SUMMARY
+
+This analysis aims to answer three objectives (1) is automatic or manual transmission better for miles per gallon (MPG)?, (2) what is the difference in MPG and transmission types? (3) is there direct relationship between MPG and transmission type or is there another variable that links causality?
+
+With graphical and statistical analysis it was demonstrated that automatic transmission (17.15 mpg) is significantly better for MPG than manual transmission (24.39 mpg) using a two tailed t-test at 0.95% statistical level at a P-value of 0.001.  The difference between transmission types was 7.24 MPG.
+
+However, it was discovered that there was no direct linear regression model between MPG and transmission unless a third variable either displacement, number of cylinders or weight was included.  Although all three variables are statistically significant at 95% level (P-values 0.05, 0.001 and 0.01 respectively) displacement displayed an exponential model so this model is rejected.  Of the remaining two models weight has a better model fit than cylinder numbers thus the MPG-weight-transmission model is deemed to be the 'right' linear regression model for the dataset.
+
+###METHODOLOGY / DATA PROCESSING
+
+``` {r libraries}
+##1 - loading libraries
+library(datasets); library(car); library(ggplot2); library(dplyr); library(GGally)
+library(reshape2); library(knitr); library(rmarkdown); library(rgl)
+```
+Exploration of the mtcars dataset: 32 rows of 11 columns (excluding car manufacturer/model). Column titles are shown below.
+``` {r data exploration}
+	##2 - dataset exploration; 
+	n <- dim(mtcars)[1]; n; head(mtcars, 1)
+```
+``` {r stats}
+	##3.1 - calculating the difference in mpg mean values for each transmission type
+	datasubset <- cbind(mtcars$mpg, mtcars$am)
+	sorted <- datasubset[order(mtcars$am, mtcars$mpg), ]
+	summary(sorted[c(1:19)]); summary(sorted[c(20:32)])
+```
+Table 1. Summary statistics
+``` {r t-test}
+	##4 - two tailed t-test
+	t.test((sorted[c(1:19)]), (sorted[c(20:32)]), conf.level = 0.95)
+```
+``` {r vif}
+##6 - which variables are related to mpg
+regressionallmpg <- lm(mtcars$mpg ~ ., data = mtcars)
+vif(regressionallmpg)
+##6.1 - transmission against all variables
+regressionalltrans <- lm(mtcars$am ~ ., data = mtcars)
+vif(regressionalltrans)
+```
+``` {r anova}
+##7 - ANOVA statistical analysis
+anova(regressionallmpg)
+```
+###RESULTS
+
+Objective one: is there a difference between MPG and transmission type?
+
+Both figure 1 (appendices) and table 1 demonstrate that there is a difference between the mean values of automatic transmission (17.15 MPG) and manual transmission (24.39 MPG). The difference between these values is 7.24 mpg this answers the second objective.  But is this difference significant?  At 0.95% significance level using a two-tailed t-test, the t statistic -3.7671 is greater than the upper confidence interval of -3.209684.  With a probability value 0.001 the difference is significant.
+
+The final objective: is there a direct relationship between MPG and transmission?  Does it conform to a linear regression model? 
+
+To explore which variables are highly correlated with MPG and transmission the diagnostic test variance influence factor (VIF) was used.  For both MPG and transmission, displacement (disp), cylinders (cyl) and weight (wt) appear highly correlated in descending order.  But is there any significance between these variables?  Running an analysis of variance (below) shows that cylinders, weight and displacement are significant at P-values of 0.001, 0.01 and 0.05 respectively at a 95% significance level when related to MPG.
+
+But does including any of the three variables conform to the linear regression model equation stated earlier?
+
+In figures 2 and 5 MPG and transmission with displacement is not a linear regression model but appears to be an exponential model.  In figures 3 and 6 MPG, transmission with weight is negatively correlated linear regression model as weight decreases MPG increases.  This is a sensible linear regression model as not many points occur outside the 95% confidence level.  Whereas figures 4 and 7 display a negatively correlated regression model however it is a poor fit as the majority of points lie outside the 95% significance level.  This model is rejected.
+
+###CONCLUSION
+
+Automatic transmission is better for MPG than manual transmission.  The difference between transmission types is 7.24 MPG.  There was no direct relationship between MPG and transmission.  The best fit linear regression model was MPG - weight - transmission.
+	
+###APPENDICES
+```{r graphics, fig.height = 3, fig.width = 3.5}
+par(mfrow = c(2,4))
+##1 - graphic - boxplot of MPG against transmission
+t = ggplot(mtcars, aes(factor(am), mpg))
+t = t + ylab("Miles per gallon\n") + xlab("Transmission type (0 = Automatic, 1 = manual)") 
+t = t + ggtitle("Figure 1. Miles per gallon by\n transmission\n")
+t = t + geom_boxplot(aes(fill = factor(am)))
+##2.1 - graphic - scatterplot mpg vs displacement
+disp <- ggplot(mtcars, aes(x = mtcars$mpg, y = mtcars$disp))
+disp = disp + ggtitle("Figure 2. Engine displacement\n(cubic inches) against\n miles per gallon\n")
+disp = disp + ylab("Engine displacement\n(cubic inches)\n") + xlab("Miles per gallon")
+disp = disp + geom_point()
+##2.2 - graphic  - scatterplot mpg vs weight
+wt <- ggplot(mtcars, aes(x = mtcars$mpg, y = mtcars$wt))
+wt = wt + ggtitle("Figure 3. Car weight (lb/1000)\nby miles per gallon\n")
+wt = wt + ylab("Weight (lb/1000)\n") + xlab("Miles per gallon")
+wt = wt + geom_point() + geom_smooth(method = "lm")
+##3.3 - graphic  - scatterplot mpg vs cylinders
+cyl <- ggplot(mtcars, aes(x = mtcars$mpg, y = mtcars$cyl))
+cyl = cyl + ggtitle("Figure 4. Number of cylinders\nby miles per gallon\n")
+cyl = cyl + ylab("Number of cylinders\n") + xlab("Miles per gallon")
+cyl = cyl + geom_smooth(method = "lm") + geom_point()
+t; disp; wt; cyl
+
+##3.4 - graphic  - scatterplot mpg vs displacement vs transmission
+y <- resid(lm(mtcars$mpg ~ mtcars$am)); x1 <- resid(lm(mtcars$disp ~ mtcars$am)); 
+x2 <- resid(lm(mtcars$cyl ~ mtcars$am)); x3 <- resid(lm(mtcars$wt ~ mtcars$am))
+resid1 <- qplot(y, x1)
+resid1 = resid1 + ggtitle("Figure 5. Residuals plot:\nMPG vs Engine displacement\nvs transmission\n")
+resid1 = resid1 + ylab("resid(lm(mtcars$disp ~\nmtcars$am))\n")
+resid1 = resid1 + xlab("resid(lm(mtcars$mpg ~ mtcars$am))")
+##3.5 - graphic  - scatterplot mpg vs weight vs transmission
+resid3 <- qplot(x3, y)
+resid3 = resid3 + ggtitle("Figure 6. Residuals plot:\nMPG vs car weight\nvs transmission\n")
+resid3 = resid3 + ylab("resid(lm(mtcars$wt ~\nmtcars$am))\n")
+resid3 = resid3 + xlab("resid(lm(mtcars$mpg ~ mtcars$am))")
+resid3 = resid3 + stat_smooth(method = "lm")
+##3.5 - graphic  - scatterplot mpg vs cylinders vs transmission
+resid2 <- qplot(y, x2)
+resid2 = resid2 + ggtitle("Figure 7. Residuals plot:\nMPG vs number of cylinders\nvs transmission\n")
+resid2 = resid2 + ylab("resid(lm(mtcars$cyl ~\nmtcars$am))\n")
+resid2 = resid2 + xlab("resid(lm(mtcars$mpg ~ mtcars$am))")
+resid2 = resid2 + stat_smooth(method = "lm")
+resid1; resid3; resid2
+```
+render("project1.Rmd", "pdf_document")
