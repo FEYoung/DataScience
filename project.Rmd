@@ -1,0 +1,264 @@
+#DATA SCIENCE SPECIALISM
+
+###MODULE 8 - PRACTICAL MACHINE LEARNING
+
+##Investigation into qualitative activity recognition information from a dumbbell lifting exercise and the predictive ability of a boosting machine learning algorithm
+
+###AUTHOR: FE YOUNG
+
+###DATE: 2015 Nov 20
+
+##----------------------------------------------
+
+###ABSTRACT
+
+Velloso (2013) investigated whether machine learning algorithms could accurately detect erroneous methods of lifting a dumbbell.
+
+Following on from their research this analysis performs a predicton using the boosting machine learning algorithm rather than best fit Random Forest approach.
+
+The predictive ability of Model One generated an overall accuracy was 0.96 and removing eight zero influence predictors reduced Model Two to an overall accuracy to 0.95.  Model One was used to evaluate the prediction accuracy information located in the validation dataset.  Model One correctly identified all 20 validation cases.
+
+##----------------------------------------------
+
+###INTRODUCTION
+
+The six male test subjects were of 20 - 28 years of age and inexperienced in dumbbell weight lifting exercises.  The dumbbell weighed 1.25 kg.
+
+Each subject performed a set of 10 repetitions of a unilateral dumbbell bicep curl in five different ways.  Class A corresponded to the correct execution of the exercise while methods B through E corresponded to common dumbbell lifting mistakes namely (B) throwing the elbow to the front; (C) dumbbell lifted halfway; (D) dumbbell lowered halfway; (E) throwing hips to the front.
+
+The question addressed in this report is can a machine learning model correctly identify 20 validation cases?
+
+##----------------------------------------------
+
+###METHODOLOGY
+
+Loading R packages:
+
+```{R preprocessing, cache = TRUE}
+##1 - loading libraries
+library(caret); library(ggplot2); library(data.table); library(plyr); library(dplyr); library(reshape2); library(ggplot2); library(knitr); library(rmarkdown); library(YaleToolkit)
+
+##NOTE - for knitr/rmarkdown to work in RCONSOLE you are required to download the PANDOC package available online at: http://pandoc.org/installing.html
+
+What hardware/software combination did I use for this analysis?
+
+```{r session info, cache = TRUE}
+	##2 - what hardware/software is this analysis using?
+	sessionInfo()
+```
+
+Loading the training and validation datasets.  Exploration of the training dataset.
+
+```{loading datasets, cache = TRUE}	
+		##3 - loading datasets
+		
+		#3.1 - trainingdataset
+		if(!file.exists('pml-training.csv')) {
+		download.file("https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv", destfile = "pml-training.csv")
+		}
+		training <- read.table("pml-training.csv", sep = ",", header = T)
+
+		##3.2 - validation dataset
+		if(!file.exists('pml-testing.csv')) {
+		download.file("https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv", destfile = "pml-testing.csv")
+		}
+		validation <- read.table("pml-testing.csv", sep =",", header = T)
+		
+			##4 - exploring datasets
+			dim(training); dim(validation); str(training, list.len = 160)
+			
+```
+
+The dataset consists of 19622 rows with 160 columns.  Examination of the dataset concluded that 106 columns could be removed as they contained no valid information.  These columns contained the words or abbreviations: kurtosis, mean, stddev, var, var_total, avg, skewness, max, min, new_window, num_window, amplitude.  There are no columns with missing data or zero variance.
+
+```{R removing columns & splitting dataset, cache = TRUE}
+
+	##5 - removing unwanted columns and dealing with missing data
+				
+	##5.1 - including the words: kurtosis, mean, stddev, var, var_total, avg, skewness, max, min, new_window, num_window, amplitude and the time variables
+	trainingdata <- training[c(8:10, 37:48, 60:68, 84:86, 113:124, 151:160)]
+	validationdataset <- validation[c(8:10, 37:48, 60:68, 84:86, 113:124, 151:160)]
+	
+	##5.2 - where zeroVar = 0 AND nzv = TRUE remove columns? NOTHING TO DEAL WITH
+	removezero1 <- nearZeroVar(trainingdata, saveMetrics = T)
+	removezero1
+```
+
+```{r whatis, cache = TRUE}	
+
+	##5.3 - is there any missing data to impute?  NOTHING TO DEAL WITH
+	whatis(trainingdata)
+
+```
+
+##----------------------------------------------
+
+<b>It was decided to split the dataset into two randomly selected pieces using the createDataPartition command because of the large dataset size.  The two pieces: 60% (11767 rows) for model training and 40% (7846 rows) for model testing were chosen by trial and error.  The training model provided evidence that model accuracy increased as the size of training dataset was increased, but was constrained by computing power.
+
+A validation dataset has been supplied containing 20 rows in order to fulfil the project requirement for this Data Science Specialism module.  One  point per row will be awarded for each correctly predicted answer by the generated model.
+
+```{R splitting, cache = TRUE}
+
+	##6 - splitting the dataset 70:30 training:testing
+	split1 <- createDataPartition(y = trainingdata$classe, p = 0.6, list = FALSE)
+	trainingdataset <- trainingdata[split1, ]
+	testingdataset <- trainingdata[-split1, ]
+	dim(trainingdataset); dim(testingdataset)
+
+```
+
+The training model instructions required that the classe (A - E) variable was to be predicted by the model.  To train the model the classe variable had to be removed so not to predict itself.
+
+```{R premodelling, cache = TRUE}
+
+	##7 - classe ~ user_name + all variables INCLUDING PREPROCESSING
+	namestraining <- names(trainingdataset[c(-49)])
+	form <- as.formula(paste("classe~", paste(namestraining, collapse = "+"), sep = ""))
+
+```
+
+The choice of training model was related to its computational RAM (random access memory) expense, the time available to complete the module project analysis submission and the defined accuracy of the model compared to others as described by Jeff Leek in the video lecture on Boosting (see References).  This led to the selection of the boosting model - command "gbm".
+
+Preprocessing of the training dataset was performed at the same time as model training and it centred and scaled the all variables.  If any other preprocessing commands were added to the model the computer produced a BSoD (blue screen of death).
+
+The boosting model on the training dataset was run several times and each time there was a slightly different accuracy output so for reproducibility a seed was set, number 1258 was used.
+
+```{R training model, cache = TRUE}
+
+	##8 - Model 1
+	set.seed(1258)
+	model1 <- train(form, data = trainingdataset, preProcess = c("scale", "center"), method = "gbm", verbose = F)
+
+```
+
+On completion of the model it was noted that eight predictors had no model influence and were removed from the training dataset.  The predictors are accel_belt_x, accel_belt_y, pitch_arm, gyros_arm_z, accel_arm_y, yaw_dumbbell, yaw_forearm and gyros_forearm_y.
+
+```{r removal}
+	##9 - removing additional variables
+	trainingdataset2 <- trainingdataset[c(1:6, 9:13, 15:17, 19, 21:26, 28:38, 40, 42:49)]
+	dim(trainingdataset2)
+```
+
+The model was run again without these eight predictors for the purpose of cross validation with 50% of the original training dataset rows randomly chosen.  Would the model accuracy improved without these eight variables?
+
+```{r splitting 2}
+	##10 - splitting the training dataset into 2 pieces 50:50
+	split2 <- createDataPartition(y = trainingdataset2$classe, p = 0.5, list = FALSE)
+	trainingdataset3 <- trainingdataset2[split2, ]
+
+	##11 - removing the classe variable
+	namestraining <- names(trainingdataset3[c(-41)])
+	form2 <- as.formula(paste("classe~", paste(namestraining, collapse = "+"), sep = ""))
+
+	##12 - MODEL 2
+	model2 <- train(form2, data = trainingdataset3, preProcess = c("scale", "center"), method = "gbm", verbose = F)
+```
+
+On satisfactory training of the final model it was used to predict the validation dataset.
+
+##----------------------------------------------
+
+###RESULTS
+
+The results from the Model One and its predictive accuracy on the testing dataset:
+
+```{r boosting model 1, cache = TRUE}
+
+	print(model1$finalModel)
+	plot(model1)
+	summary(model1)
+	prediction1 <- predict(model1, testingdataset)
+	qplot(prediction1, colour = classe, fill = classe, data = testingdataset, main = "Predicting the testing dataset by Model 1\n", ylab = "Count\n")
+	confusionMatrix(testingdataset$classe, predict(model1, testingdataset))
+
+```
+
+The resultant statistical output was examined.  The overall accuracy of the model was 0.96.  The positive predictive value (PPV) was over 0.95 for classes A, C to E and class B above 0.94 whereas the negative predictive value (NPV) was above 0.98 for all classes.<br><br>
+
+The results for Model Two (below) demonstrated that removing the eight predictors reduced the accuracy of the boosting model from 0.96 to 0.95.  The PPV was reduced for four of the classes to 0.94 but class B reduced to 0.91.  For NPV all class values were above 0.98.  As the accuracy of the model dropped without these eight predictors the first model was chosen to make predictions for the validation dataset.
+
+```{r boosting model 2, cache = TRUE}
+	##14 - Model 2 results
+	print(model2$finalModel)
+	summary(model2)
+	prediction2 <- predict(model2, testingdataset)
+	qplot(prediction2, colour = classe, fill = classe, data = testingdataset, main = "Predicting the testing dataset by Model 2\n", ylab = "Count\n")
+	confusionMatrix(testingdataset$classe, predict(model2, testingdataset))
+```
+
+The prediction results of the 20 validation cases using Model One:
+
+```{r validation predictions, cache = TRUE}
+
+	##15 - Predictions with Model 1
+	predict(model1, validationdataset)
+
+```
+
+<b>Of the 20 cases all 20 have been correctly predicted.
+
+##----------------------------------------------
+
+###REFERENCES
+
+Velloso E, Bulling A, Gellersen H, Ugulino W, Fuks H (2013) Qualitative Activity Recognition of Weight Lifting Exercises, Proceedings of the 4th International Conference in Cooperation with SIGCHI (Augmented Human 2013), Stuttgart, Germany
+	
+Guillaume Bourgault & Chris W (2015) Distribution of each variable for each test subject and each class (A - E) online at https://class.coursera.org/predmachlearn-034/forum/thread?thread_id=20
+
+Leek J (2015) Boosting video lecture available online at https://class.coursera.org/predmachlearn-034/lecture/49
+
+##----------------------------------------------
+
+###APPENDICES
+
+##APPENDIX 1: Codebook
+
+Abbreviations for parts of the column names:-
+
+gyros 	<- gyroscope
+x 		<- x axis
+y 		<- y axis
+z 		<- z axis
+accel	<- accelerometer
+magnet	<- magnetometer
+
+Meaning of classe headings:-
+
+(A) correct execution of the exercise
+(B) throwing the elbow to the front
+(C) dumbbell lifted halfway
+(D) dumbbell lowered halfway
+(E) throwing hips to the front
+
+Position of sensors:-
+
+belt		around the waist
+arm			around the upper arm
+forearm		around the lower arm
+dumbbell	on the end of the dumbbell
+
+
+##APPENDIX 2
+
+The information for this project comes from these sources:
+
+http://groupware.les.inf.puc-rio.br/har
+
+The links to the datasets are:
+
+Entire dataset:
+
+https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv
+
+Validation dataset: 
+
+https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv
+
+
+##APPENDIX 3
+
+With only 2 GB of hard disk space the html document could not be constructed within the R package.  Therefore I had to write the whole html file myself using Notepad++.  So if the result tables look a little strange and columns not correctly aligned this is the reason why.
+
+```{r html}
+render("project.Rmd", html_document(), quiet = T)
+```
