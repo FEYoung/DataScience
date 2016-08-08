@@ -1,7 +1,4 @@
-# DataScience
-This repo is host to all the programming code I will learn during the Coursera Johns Hopkins MOOC - Data Science Specialism https://www.coursera.org/specialization/jhudatascience/1
-
-MODULE 10 - CAPSTONE PROJECT
+#MODULE 10 - CAPSTONE PROJECT
 
 "The capstone project class will allow students to create a usable/public data product that can be used to show your skills to potential employers. Projects will be drawn from real-world problems and will be conducted with industry, government, and academic partners."
 
