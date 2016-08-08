@@ -1,2 +1,46 @@
 # DataScience
 This repo is host to all the programming code I will learn during the Coursera Johns Hopkins MOOC - Data Science Specialism https://www.coursera.org/specialization/jhudatascience/1
+
+MODULE 10 - CAPSTONE PROJECT
+
+"The capstone project class will allow students to create a usable/public data product that can be used to show your skills to potential employers. Projects will be drawn from real-world problems and will be conducted with industry, government, and academic partners."
+
+#-------------------------------
+
+INSTRUCTIONS
+
+The goal of this exercise is to create a product to highlight the prediction algorithm that you have built and to provide an interface that can be accessed by others. For this project you must submit:
+
+    A Shiny app that takes as input a phrase (multiple words) in a text box input and outputs a prediction of the next word.
+    
+    A slide deck consisting of no more than 5 slides created with R Studio Presenter pitching your algorithm and app as if you were presenting to your boss or an investor.
+
+#--------------------------------
+
+REVIEW CRITERIA
+
+SHINY APP ALGORITHM
+
+    Does the link lead to a Shiny app with a text input box that is running on shinyapps.io?
+    
+    Does the app load to the point where it can accept input?
+    
+    When you type a phrase in the input box do you get a prediction of a single word after pressing submit and/or a suitable delay for the model to compute the answer?
+    
+    Put five phrases drawn from Twitter or news articles in English leaving out the last word. Did it give a prediction for every one?
+
+PRESENTATION SLIDES
+
+    Does the link lead to a 5 slide deck on R Pubs?
+    
+    Does the slide deck contain a description of the algorithm used to make the prediction?
+    
+    Does the slide deck describe the app, give instructions, and describe how it functions?
+    
+    How would you describe the experience of using this app?
+    
+    Does the app present a novel approach and/or is particularly well done?
+    
+    Would you hire this person for your own data science startup company?
+    
+    
