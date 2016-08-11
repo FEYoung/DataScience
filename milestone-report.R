@@ -1,10 +1,10 @@
-DATA SCIENCE SPECIALISM
+#DATA SCIENCE SPECIALISM
 
-CAPSTONE PROJECT
+##CAPSTONE PROJECT
 
-THE MILESTONE REPORT
+###THE MILESTONE REPORT
 
-_____________________________________________
+-----------------------------
 
 The Milestone Report can be found at:
 
