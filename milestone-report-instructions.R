@@ -2,7 +2,7 @@
 
 ##CAPSTONE PROJECT
 
-#========================================
+========================================
 
 INSTRUCTIONS
 
@@ -15,9 +15,12 @@ of tables and plots to illustrate important summaries of the data set.
 
 The motivation for this project is to: 
 
-1. Demonstrate that you have downloaded the data and have successfully loaded it in.
-2. Create a basic report of summary statistics about the data sets.
-3. Report any interesting findings that you amassed so far.
+1. Demonstrate that you have downloaded the data and have successfully loaded it in;
+
+2. Create a basic report of summary statistics about the data sets;
+
+3. Report any interesting findings that you amassed so far;
+
 4. Get feedback on your plans for creating a prediction algorithm and Shiny app.
 
 
