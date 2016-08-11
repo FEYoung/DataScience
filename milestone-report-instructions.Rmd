@@ -2,7 +2,7 @@
 
 ##CAPSTONE PROJECT
 
-========================================
+--------------------------------------
 
 INSTRUCTIONS
 
@@ -23,6 +23,7 @@ The motivation for this project is to:
 
 4. Get feedback on your plans for creating a prediction algorithm and Shiny app.
 
+----------------------------------------
 
 REVIEWING OTHER STUDENTS WORK
 
